@@ -1,0 +1,47 @@
+﻿@model IEnumerable<OrderTickets.Models.Ticket>
+
+<h2>Список билетов</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Имя пассажира
+            </th>
+            <th>Номер места</th>
+            <th>Дата покупки</th>
+            <th>Стоимость</th>
+            <th>Статус</th>
+            <th>Действие</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var ticket in Model)
+        {
+            <tr>
+                <td>@ticket.PassengerName</td>
+                <td>@ticket.SeatNumber</td>
+                <td>@ticket.PurchaseDate</td>
+                <td>@ticket.Price</td>
+
+                <td>@{
+                        if (ticket.IsRegistered)
+                        {
+                            <text>Зарегистрирован</text>
+                        }
+                        else
+                        {
+                            <text>Не зарегистрирован</text>
+                        }
+                    }
+                </td>
+
+                <td>
+                    <a asp-action="AddOrEdit" asp-route-id="@ticket.Id">Редактировать</a>
+                    <a asp-action="Delete" asp-route-id="@ticket.Id">Удалить</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
