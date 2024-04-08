@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using OrderTickets.Models;
+using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace OrderTickets.Controllers
 {
@@ -12,12 +15,22 @@ namespace OrderTickets.Controllers
             _ticketRepository = ticketRepository;
         }
 
+        private List<TicketViewModel> GetTicketViewModels()
+        {
+            // Логика для получения списка объектов TicketViewModel
+            List<TicketViewModel> ticketViewModels = new List<TicketViewModel>();
+            // Пример добавления элементов в список
+            ticketViewModels.Add(new TicketViewModel { /* Заполните свойства */ });
+            return ticketViewModels;
+        }
 
 
         public IActionResult Index()
         {
-            var tickets = _ticketRepository.GetAllTickets();
-            return View();
+            var ticketViewModels = GetTicketViewModels(); // Получение списка объектов TicketViewModel
+            return View(ticketViewModels);
+            /*var tickets = _ticketRepository.GetAllTickets();
+            return View();*/
         }
 
         public IActionResult AddOrEdit(int id)
@@ -34,7 +47,7 @@ namespace OrderTickets.Controllers
             return View(ticket);
         }
 
-        public IActionResult AddOrEdit(Ticket ticket) 
+        public IActionResult AddOrEdit(Ticket ticket,) 
         {
             if (ModelState.IsValid)
             {
@@ -47,7 +60,7 @@ namespace OrderTickets.Controllers
                 {
                     _ticketRepository.UpdateTicket(ticket);
                 }
-                return RedirectToAction("Index"));
+                return RedirectToAction("Index");
             }
             return View(ticket);
         }

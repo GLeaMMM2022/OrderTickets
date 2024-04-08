@@ -1,4 +1,4 @@
-﻿@model IEnumerable<OrderTickets.Models.Ticket>
+﻿@model IEnumerable<OrderTickets.Models.TicketViewModel>
 
 <h2>Список билетов</h2>
 
@@ -24,7 +24,8 @@
                 <td>@ticket.PurchaseDate</td>
                 <td>@ticket.Price</td>
 
-                <td>@{
+                <td>
+                    @{
                         if (ticket.IsRegistered)
                         {
                             <text>Зарегистрирован</text>
@@ -43,5 +44,4 @@
             </tr>
         }
     </tbody>
-
 </table>

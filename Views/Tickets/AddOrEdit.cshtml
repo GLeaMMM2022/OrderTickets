@@ -1,0 +1,38 @@
+﻿@model OrderTickets.Models.Ticket
+
+<h2>Добавить или редактировать билет</h2>
+
+
+<form asp-action="AddOrEdit">
+    <div class="form-group">
+        <label asp-for="PassengerName">ФИО пассажира</label>\
+        <input asp-for="PassengerName" class="form-control" />
+        <span asp-validation-for="PassengerName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="SeatNumber">Номер места</label>
+        <input asp-for="SeatNumber" class="form-control" />
+        <span asp-validation-for="SeatNumber" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Price">Стоимость билета</label>
+        <input asp-for="Price" />
+        <span asp-validation-for="Price" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Дата покупки</label>
+        <input value="@Model.PurchaseDate" class="form-control" disabled />
+    </div>
+
+    <div class="form-group">
+        <label>Статус</label>
+        <input value="@if (Model.IsRegistered) { <text>Зарегистрирован</text> } else { <text>Не зарегистрирован</text> }" class="form-control" disabled }/>
+
+    </div>
+
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+
+</form>

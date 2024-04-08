@@ -4,6 +4,14 @@ using System.Linq;
 
 namespace OrderTickets
 {
+    public interface ITicketRepository
+    {
+        IEnumerable<Ticket> GetAllTickets();
+        Ticket GetTicketById(int id);
+        void AddTicket(Ticket ticket);
+        void UpdateTicket(Ticket ticket);
+    }
+
     public class TicketRepository : ITicketRepository
     {
         private List<Ticket> _tickets;
@@ -33,6 +41,7 @@ namespace OrderTickets
 
         public void AddTicket(Ticket ticket)
         {
+            ticket.Id = _tickets.Count + 1;
             _tickets.Add(ticket);
         }
 
