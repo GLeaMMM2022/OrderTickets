@@ -33,6 +33,7 @@ namespace OrderTickets.Controllers
             return View();*/
         }
 
+        [HttpGet("AddOrEdit/{id}")]
         public IActionResult AddOrEdit(int id)
         {
             Ticket ticket;
@@ -47,7 +48,8 @@ namespace OrderTickets.Controllers
             return View(ticket);
         }
 
-        public IActionResult AddOrEdit(Ticket ticket,) 
+        [HttpPost("AddOrEditWithModel/{id}")]
+        public IActionResult AddOrEditWithModel(Ticket ticket, TicketViewModel model) 
         {
             if (ModelState.IsValid)
             {
